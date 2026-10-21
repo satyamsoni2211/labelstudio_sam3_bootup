@@ -1,0 +1,45 @@
+<View>
+  <!-- Layout follows the official label-studio-ml-backend "segment_anything_2_image" example.
+       Labels (cat/dog/person) must be identical in all four groups: the mask gets the label of the prompt. -->
+  <Style>
+    .lsf-labels { margin-bottom: 8px; }
+  </Style>
+
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+
+  <Header size="5" value="1) Final mask label (brush - edit with brush/eraser)"/>
+  <BrushLabels name="brush" toName="image">
+    <Label value="cat" background="#e51515"/>
+    <Label value="dog" background="#0dabd0"/>
+    <Label value="person" background="#51a02d"/>
+    <Label value="part" smart="true" background="#51a02d" showInline="true"/>
+    <Label value="hole" smart="true" background="#51a02d" showInline="true"/>
+  </BrushLabels>
+
+  <Header size="5" value="2) Click prompt (needs Auto-Annotation ON + magic Auto-Detect keypoint tool) - click the object; Alt/Option+click = negative point"/>
+  <KeyPointLabels name="click_prompt" toName="image" smart="true">
+    <Label value="cat" smart="true" background="#e51515" showInline="true"/>
+    <Label value="dog" smart="true" background="#0dabd0" showInline="true"/>
+    <Label value="person" smart="true" background="#51a02d" showInline="true"/>
+    <Label value="part" smart="true" background="#51a02d" showInline="true"/>
+    <Label value="hole" smart="true" background="#51a02d" showInline="true"/>
+  </KeyPointLabels>
+
+  <Header size="5" value="3) Box prompt (needs Auto-Annotation ON + magic Auto-Detect rectangle tool) - drag a box around the object"/>
+  <RectangleLabels name="box_prompt" toName="image" smart="true">
+    <Label value="cat" background="#e51515" showInline="true"/>
+    <Label value="dog" background="#0dabd0" showInline="true"/>
+    <Label value="person" background="#51a02d" showInline="true"/>
+    <Label value="part" smart="true" background="#51a02d" showInline="true"/>
+    <Label value="hole" smart="true" background="#51a02d" showInline="true"/>
+  </RectangleLabels>
+
+  <Header size="5" value="4) Polygon label (manual polygons; SAM3 fills it only if the backend runs with SAM3_OUTPUT=polygon or both)"/>
+  <PolygonLabels name="polygon" toName="image" strokeWidth="2" pointSize="small" opacity="0.4">
+    <Label value="cat" background="#e51515"/>
+    <Label value="dog" background="#0dabd0"/>
+    <Label value="person" background="#51a02d"/>
+    <Label value="part" smart="true" background="#51a02d" showInline="true"/>
+    <Label value="hole" smart="true" background="#51a02d" showInline="true"/>
+  </PolygonLabels>
+</View>

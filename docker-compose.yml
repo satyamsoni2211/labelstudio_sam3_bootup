@@ -1,0 +1,32 @@
+services:
+  label-studio:
+    image: heartexlabs/label-studio:1.23.2
+    container_name: label-studio
+    ports:
+      - "8080:8080"
+    environment:
+      LABEL_STUDIO_HOST: ""
+      LABEL_STUDIO_USERNAME: ${LS_USER_EMAIL:-admin@example.com}
+      LABEL_STUDIO_PASSWORD: ${LS_PASSWORD:-admin12345}
+      # Pre-seeds the legacy API token of the admin user (same value used by the backend + scripts)
+      LABEL_STUDIO_ENABLE_LEGACY_API_TOKEN: "true"
+      LABEL_STUDIO_USER_TOKEN: ${LABEL_STUDIO_API_KEY:-0123456789abcdef0123456789abcdef01234567}
+      LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK: "true"
+      LOCAL_FILES_SERVING_ENABLED: "true"
+      LOCAL_FILES_DOCUMENT_ROOT: /label-studio/files
+      # Needed for SSRF-protection bypass on private hosts in recent versions
+      SSRF_PROTECTION_ENABLED: "false"
+      # host.docker.internal resolves to a "reserved" address (e.g. 0.250.250.254) that LS would refuse
+      # when registering the ML backend. Fine for a local-only instance; do not expose it publicly.
+      USE_DEFAULT_BANNED_SUBNETS: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./ls-data:/label-studio/data
+      - ./images:/label-studio/files/images
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped

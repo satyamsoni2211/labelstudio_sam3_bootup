@@ -1,0 +1,202 @@
+/* Apple-inspired theme for Label Studio + SAM3 docs.
+   System font stack (SF Pro on Apple devices), generous whitespace,
+   restrained blue accent (#0071e3), full light + dark support. */
+
+:root {
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  --vp-font-family-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-ink: #1d1d1f;
+  --apple-gray: #6e6e73;
+  --apple-bg-soft: #f5f5f7;
+
+  --vp-c-brand-1: var(--apple-blue);
+  --vp-c-brand-2: var(--apple-blue-hover);
+  --vp-c-brand-3: #2997ff;
+  --vp-c-brand-soft: rgba(0, 113, 227, 0.12);
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: var(--apple-bg-soft);
+  --vp-c-bg-soft: var(--apple-bg-soft);
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-text-1: var(--apple-ink);
+  --vp-c-text-2: #424245;
+  --vp-c-text-3: var(--apple-gray);
+  --vp-c-border: #d2d2d7;
+  --vp-c-divider: #d2d2d7;
+  --vp-c-gutter: #e8e8ed;
+
+  --vp-nav-height: 52px;
+  --vp-nav-bg-color: rgba(251, 251, 253, 0.8);
+  --vp-nav-screen-bg-color: #fbfbfd;
+  --vp-sidebar-bg-color: #fbfbfd;
+
+  --vp-home-hero-name-color: var(--apple-ink);
+  --vp-home-hero-name-background: none;
+  --vp-button-brand-bg: var(--apple-blue);
+  --vp-button-brand-hover-bg: var(--apple-blue-hover);
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-active-bg: #0060c9;
+
+  --vp-code-color: #bf3989;
+  --vp-code-bg: rgba(110, 110, 115, 0.1);
+  --vp-code-block-bg: #f5f5f7;
+
+  --apple-radius-lg: 18px;
+  --apple-radius-md: 12px;
+  --apple-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  --apple-blue: #2997ff;
+  --apple-blue-hover: #409cff;
+  --vp-c-brand-1: var(--apple-blue);
+  --vp-c-brand-2: var(--apple-blue-hover);
+  --vp-c-brand-3: #2997ff;
+  --vp-c-brand-soft: rgba(41, 151, 255, 0.16);
+
+  --vp-c-bg: #000000;
+  --vp-c-bg-alt: #161617;
+  --vp-c-bg-soft: #1d1d1f;
+  --vp-c-bg-elv: #1d1d1f;
+  --vp-c-text-1: #f5f5f7;
+  --vp-c-text-2: #d2d2d7;
+  --vp-c-text-3: #86868b;
+  --vp-c-border: #424245;
+  --vp-c-divider: #424245;
+  --vp-c-gutter: #2c2c2e;
+
+  --vp-nav-bg-color: rgba(22, 22, 23, 0.8);
+  --vp-nav-screen-bg-color: #161617;
+  --vp-sidebar-bg-color: #000000;
+
+  --vp-code-color: #ff7ab6;
+  --vp-code-bg: rgba(210, 210, 215, 0.14);
+  --vp-code-block-bg: #161617;
+  --apple-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Frosted-glass navigation */
+.VPNavBar {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+.VPNavBar.has-sidebar {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Typography: tight, confident headings like apple.com */
+.vp-doc h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+.vp-doc h2 {
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: -0.012em;
+  font-weight: 700;
+  border-top: none;
+  padding-top: 40px;
+}
+.vp-doc h3 {
+  font-size: 21px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+.vp-doc p, .vp-doc li {
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.011em;
+}
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+}
+
+/* Rounded, soft surfaces */
+.vp-doc div[class*='language-'],
+.vp-doc .custom-block,
+.vp-doc table {
+  border-radius: var(--apple-radius-md);
+}
+.vp-doc div[class*='language-'] {
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: none;
+}
+.custom-block {
+  border: 1px solid var(--vp-c-divider);
+  border-left-width: 1px;
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* Home hero */
+.VPHero .name {
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.VPHero .text {
+  font-size: clamp(24px, 3.5vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  max-width: 640px;
+}
+.VPHero .tagline {
+  font-size: 19px;
+  line-height: 1.42;
+  color: var(--vp-c-text-3);
+  max-width: 600px;
+}
+.VPButton {
+  border-radius: 980px !important;
+  font-weight: 500;
+  padding: 0 22px;
+}
+.VPButton.brand {
+  background-color: var(--apple-blue);
+}
+.VPButton.brand:hover {
+  background-color: var(--apple-blue-hover);
+}
+.VPFeature {
+  border-radius: var(--apple-radius-lg);
+  border: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg-soft);
+  box-shadow: none;
+}
+.VPFeature .title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.VPFeature .details {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* Sidebar + outline */
+.VPSidebarItem .text {
+  font-size: 14px;
+}
+.VPDoc .aside .content {
+  font-size: 13px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
